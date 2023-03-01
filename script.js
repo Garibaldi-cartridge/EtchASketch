@@ -1,17 +1,23 @@
 const grid = document.getElementById("grid-container");
 const buttonHolder = document.getElementById('button-holder');
 let chosenColor = 'purple';
-var cellsAcross = 100;
-let totalDivs = (cellsAcross*cellsAcross);
-grid.style.gridTemplateColumns = `repeat(${cellsAcross}, auto)`;
-grid.style.gridTemplateRows = `repeat(${cellsAcross}, auto)`;
 const numSquareBtn = document.getElementById('number-of-squares');
 
- //var cellsAcross = numSquareBtn.addEventListener('click', function(event){
-    //var userInput = prompt('How Many Squares Across?', 'number')
-    //if (userInput != null) {return `${userInput}`};
-   // else {return '16'};
-//});
+cellsAcross = 16;
+  grid.style.gridTemplateColumns = `repeat(16, auto)`;
+  grid.style.gridTemplateRows = `repeat(16, auto)`;
+  makeDiv(256);
+
+
+numSquareBtn.addEventListener('click', function(event){
+  let squares = grid.querySelectorAll('div');
+  squares.forEach(squares => squares.remove());
+  cellsAcross = prompt('How Many Squares Across?', 'number');
+  var totalDivs = (cellsAcross*cellsAcross);
+  grid.style.gridTemplateColumns = `repeat(${cellsAcross}, auto)`;
+  grid.style.gridTemplateRows = `repeat(${cellsAcross}, auto)`;
+  makeDiv(totalDivs);
+});
 
 function makeDiv(numDivs) { 
     for (let i=0; i<numDivs; i++) {
@@ -22,9 +28,8 @@ function makeDiv(numDivs) {
             event.target.style.backgroundColor = chosenColor;
             })
     }
-}
+};
 
-makeDiv(totalDivs);
 
 
 
